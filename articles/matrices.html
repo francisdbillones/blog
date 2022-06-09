@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Francis Billones">
+  <meta name="description" content="A quick definition of matrices.">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <meta property="og:image" content="https://www.blog.francisdb.net/assets/logo.svg">
+  <meta property="og:description" content="A quick definition of matrices.">
+  <meta property="og:title" content="matrices">
+  <meta property="og:url" content="https://www.blog.francisdb.net/articles/matrices.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@francishubertdb">
+  <meta name="twitter:creator" content="@francishubertdb">
+  <meta name="twitter:title" content="matrices">
+  <meta name="twitter:description" content="A quick definition of matrices.">
+  <meta name="twitter:image" content="https://www.blog.francisdb.net/assets/logo.svg">
+  <title>Matrices</title>
+  <link rel="icon" href="https://blog.francisdb.net/assets/logo.svg" type="image/svg+xml">
+  <style>
+    code {
+      white-space: pre-wrap;
+    }
+
+    span.smallcaps {
+      font-variant: small-caps;
+    }
+
+    span.underline {
+      text-decoration: underline;
+    }
+
+    div.column {
+      display: inline-block;
+      vertical-align: top;
+      width: 50%;
+    }
+
+    div.hanging-indent {
+      margin-left: 1.5em;
+      text-indent: -1.5em;
+    }
+
+    ul.task-list {
+      list-style: none;
+    }
+
+    html {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      color: #ccc;
+      font-weight: 400;
+      font-family: sans-serif;
+      font-size: 1.1em;
+      line-height: 1.6;
+      padding: 38px 16px 0 16px;
+      margin: 0 auto;
+      max-width: 800px;
+      background-attachment: fixed;
+      background-image: radial-gradient(#333 10%, transparent 10%), radial-gradient(#333 10%, transparent 10%);
+      background-color: #000;
+      background-position: 0 0, 50px 50px;
+      background-size: 50px 50px;
+    }
+
+    footer {
+      font-size: 80%;
+      color: #aaa;
+      text-align: center;
+      padding: 0.7em 0.7em;
+      margin: 10px auto;
+      background-color: rgb(0, 0, 0);
+      width: fit-content;
+    }
+
+    header#main-header {
+      border-radius: 1em;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    header#main-header,
+    main {
+      padding: 1.9em 2em 1.6em 2em;
+      margin-bottom: 2em;
+      border-radius: 2em;
+      background-color: rgb(27, 27, 27);
+    }
+
+    .logo:hover g {
+      fill: #fc3f4e;
+    }
+
+    nav a {
+      color: #fff;
+      margin-left: 2em;
+    }
+
+    nav a.active {
+      color: #8da6ff;
+    }
+
+    nav a.active:hover,
+    h1 a:hover {
+      color: #333;
+      text-shadow: 0px 0px 0.5em #00000022;
+    }
+
+    a {
+      color: #8da6ff;
+      text-decoration: none;
+      outline: 0;
+    }
+
+    a:hover {
+      color: rgba(255, 255, 255, 0.507);
+      text-shadow: 0px 0px 0.5em rgba(255, 255, 255, 0.288);
+      text-decoration: none;
+    }
+
+    p {
+      padding: 0;
+      margin: 0.5em 0 1.5em 0;
+      word-wrap: break-word;
+    }
+
+    h1 {
+      font-size: 3em;
+      letter-spacing: -0.08em;
+      line-height: 1.05;
+      font-weight: 700;
+      padding: 0px;
+      margin: 32px 0 32px 0;
+      color: #fff;
+    }
+
+    h1 a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    h2 {
+      margin: 2em 0 1em 0;
+      padding: 0;
+      font-size: 150%;
+      font-weight: bold;
+      letter-spacing: -0.05em;
+    }
+
+    h3 {
+      margin: 2em 0 1em 0;
+      padding: 0;
+      font-size: 100%;
+      font-weight: bold;
+      letter-spacing: -0.05em;
+    }
+
+    h4 {
+      font-size: 80%;
+      margin: 0;
+    }
+
+    blockquote {
+      position: relative;
+      margin: 3em 0 1.5em 2em;
+      line-height: 1.6em;
+      font-style: italic;
+      font-weight: 400;
+      text-indent: 24px;
+    }
+
+    blockquote:before {
+      display: block;
+      content: "\201C";
+      font-size: 72px;
+      position: absolute;
+      left: -40px;
+      top: 0px;
+      color: #ccc;
+    }
+
+    img {
+      border: 0;
+    }
+
+    .content img {
+      width: 100%;
+    }
+
+    .content video {
+      width: 100%;
+    }
+
+    ul {
+      list-style-type: square;
+    }
+
+    li {
+      margin-top: 0.4em;
+      font-weight: 400;
+    }
+
+    header#content-header {
+      margin: 1em 0 2em 0;
+      font-size: 90%;
+      opacity: 0.7;
+    }
+
+    div.archive {
+      font-size: 90%;
+      clear: both;
+      text-align: center;
+    }
+
+    ul.archive {
+      color: #eee;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    span.archiveDate,
+    span.archiveCount {
+      font-size: 90%;
+      color: #999;
+      width: 8em;
+      display: inline-block;
+    }
+
+    ol {
+      padding: 0 0 0 1em;
+    }
+
+    code {
+      font-family: Consolas, Monaco, DejaVu Sans Mono, Bitstream Vera Sans Mono, monospace;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 0.5em;
+      font-size: 80%;
+      padding: 0.4em;
+      color: #000;
+    }
+
+    pre {
+      font-family: Consolas, Monaco, DejaVu Sans Mono, Bitstream Vera Sans Mono, monospace;
+      font-size: 90%;
+      padding: 6px 12px 6px 12px;
+      overflow: auto;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 0.5em;
+      color: #222;
+    }
+
+    pre code {
+      padding: 0;
+      background-color: transparent;
+    }
+
+    code span.comment {
+      color: #666;
+    }
+
+    code span.string {
+      color: #6a0;
+    }
+
+    code span.regexp {
+      color: #719;
+    }
+
+    code span.punct {
+      color: #17b;
+    }
+
+    code span.keyword {
+      color: #f0b;
+    }
+
+    code span.number {
+      color: #d83;
+    }
+
+    code span.var {
+      color: #209;
+    }
+
+    code span.def {
+      color: #923;
+    }
+
+    @media only screen and (max-width: 576px) {
+      body {
+        font-size: 15px;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    type="text/javascript"></script>
+</head>
+
+<body>
+  <header id="main-header"><a href="https://francisdb.net" class="logo"><img height="30px" width="30px"
+        src="https://blog.francisdb.net/assets/logo.svg" alt="A logo combining the letters 'F' and 'H'"
+        type="image/svg+xml">
+      <nav class="menu"><a href="https://francisdb.net/">Home</a><a href="https://blog.francisdb.net/"
+          class="active">Blog</a></nav>
+  </header>
+  <main>
+    <header id="content-header">
+      <div><strong>Francis Billones, <a href="http://twitter.com/francishubertdb">@francishubertdb</a></strong>
+      </div>
+      <div>— Tuesday, May 3, 2021</div>
+    </header>
+    <article>
+      <h1> Matrices </h1>
+      <p>A matrix is a 2-dimensional grid of numbers. They can be used as representations of systems of linear
+        equations, linear mappings, and more.</p>
+      <p>They are defined as follows:</p>
+      <p><span class="math display">\[
+          M = \begin{bmatrix}
+          a_{1, 1} &amp; a_{1, 2} &amp; \cdots &amp; a_{1, c} \\
+          a_{2, 1} &amp; a_{2, 2} &amp; \cdots &amp; a_{2, c} \\
+          \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+          a_{r, 1} &amp; a_{r, 2} &amp; \cdots &amp; a_{r, c}
+          \end{bmatrix}
+          \]</span> where <span class="math inline">\(c, r \in \mathbb{N}\)</span> and <span
+          class="math inline">\(a\)</span> is a <span class="math inline">\(c \cdot r\)</span> tuple of real numbers.
+      </p>
+      <p>A matrix can be thought of as a vector of vectors, although it may not be a mathematically sound
+        representation:
+      </p>
+      <p><span class="math display">\[
+          M = \begin{bmatrix}
+          a_1 &amp; b_1 &amp; \cdots &amp; z_1 \\
+          a_2 &amp; b_2 &amp; \cdots &amp; z_2 \\
+          \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+          a_i &amp; b_i &amp; \cdots &amp; z_i
+          \end{bmatrix}
+          \]</span> where <span class="math inline">\(i \in \mathbb{Z}^+\)</span> and <span class="math inline">\(a, b,
+          \dots,z \in R^i\)</span></p>
+      <p>A much more concise definition can be used using the following convention: <span class="math display">\[
+          r, c \in \mathbb{N}, M \in \mathbb{R}^{r \times c}
+          \]</span></p>
+      <h3 id="matrix-addition">Matrix addition</h3>
+      <p>Matrix addition is a very simple operation, simply the element-wise sum: <span class="math display">\[
+          A + B := \begin{bmatrix}
+          A_{1, 1} + B_{1, 1} &amp; \cdots &amp; A_{1, c} + B_{1, c} \\
+          \vdots &amp; \vdots &amp; \vdots \\
+          A_{r, 1} + B_{r, 2} &amp; \cdots &amp; A_{r, c} + B_{r, c}
+          \end{bmatrix}
+          \]</span> where <span class="math inline">\(r, c \in \mathbb{N}\)</span> and <span class="math inline">\(A, B
+          \in
+          \mathbb{R}^{r \times c}\)</span>.</p>
+      <h3 id="matrix-multiplication">Matrix multiplication</h3>
+      <p>Matrix multiplication is a less trivial operation, defined as: <span class="math display">\[
+          C_{i, j} = \sum_{k=1}^{n}A_{i, k}B_{k,j}
+          \]</span> where <span class="math inline">\(C = AB\)</span>.</p>
+      <p>An easier way of thinking about this is that each column <span class="math inline">\(C_c\)</span> is <span
+          class="math inline">\(A \cdot B_c\)</span>. Then, it’s easy to
+        think
+        of multiplying a matrix with a column vector as the summation of scalar products with each element of the column
+        vector and its corresponding vector in the matrix.
+        <br><br>
+        In effect, the matrix represents a vector space with each column vector being a basis vector in that
+        vector space. Then, multiplying that matrix with another column vector represents the
+        transformation of that column vector (which represents a vector in the standard vector space) considering each
+        column of the matrix as a new basis vector.
+      </p>
+    </article>
+  </main>
+  <footer>© 2022 Francis Billones, loaded <strong>6.6KB</strong></footer>
+</body>
+
+</html>
